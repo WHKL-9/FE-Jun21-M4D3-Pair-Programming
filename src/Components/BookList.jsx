@@ -7,25 +7,35 @@ import romancebooks from "./Data/romance.json";
 import FilterBook from "./FilterBookList";
 
 import { Component } from "react";
-import "./SingleBook.css";
+import "./SingleBook.css"
+import SingleBook from './SingleBook'
 
 class BookList extends Component {
 	state = {
 		SelectedCategory: fantasybooks,
-		query: "",
-	};
+		query : ""
+
+	}
+
 	onChange = (query) => {
-		this.setState({ query });
+		//updating the query based on user's input
+		this.setState({query})
 
 		if (query) {
-			const filtered = this.state.SelectedCategory.filter((book) => {
-				return book.title.toLowerCase().includes(query.toLowerCase());
-			});
-			this.setState({ SelectedCategory: filtered });
+			const filteredBooks = this.state.SelectedCategory.filter((book)=>{
+				//check if our book list contains user input [book title]
+				//make sure to check both in lower case 
+				return book.title.toLowerCase().includes(query.toLowerCase())
+			})
+			this.setState({SelectedCategory: filteredBooks})
 		} else {
-			this.setState({ SelectedCategory: fantasybooks });
+			this.setState({SelectedCategory: fantasybooks})
 		}
-	};
+
+
+	}
+
+
 	// mandatory method for every class
 	render() {
 		return (
@@ -113,4 +123,9 @@ class BookList extends Component {
 	}
 }
 
-export default BookList;
+export default BookList
+
+
+
+
+		
