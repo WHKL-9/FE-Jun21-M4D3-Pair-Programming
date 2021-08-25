@@ -1,0 +1,15 @@
+img{
+    object-fit: contain;
+}
+
+#bookTitle{
+    /* remember this combination */
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+
+.wholeCard{
+    height: 25rem;
+}
+
