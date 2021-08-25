@@ -4,6 +4,7 @@ import scifibooks from './Data/scifi.json'
 import horrorbooks from './Data/horror.json'
 import historybooks from './Data/history.json'
 import romancebooks from './Data/romance.json'
+import FilterBook from './FilterBookList'
 
 
 import {Component} from 'react'
@@ -65,6 +66,7 @@ class BookList extends Component{
                     </Button>{' '}
                 </>
 
+                <FilterBook/>
                 
                 <Row className="justify-content-center">
                     
