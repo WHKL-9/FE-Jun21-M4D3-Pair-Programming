@@ -1,10 +1,20 @@
-import { InputGroup, FormControl} from 'react-bootstrap'
+import { FormControl, InputGroup } from "react-bootstrap";
 
-const SetRating = ({onChange}) => (
-    <InputGroup className="my-1">
-      <FormControl as="textarea" aria-label="With textarea" placeholder="Rate this book(from 1-5)"
-      onChange = {(e) => onChange(e.target.value)}/>
-    </InputGroup>
-)
+const SetRating = ({ onChange }) => (
+	<InputGroup className="my-1">
+		<FormControl
+			as="select"
+			name="rate"
+			placeholder="Rate this book!"
+			onChange={onChange}
+		>
+			<option value={1}>1</option>
+			<option value={2}>2</option>
+			<option value={3}>3</option>
+			<option value={4}>4</option>
+			<option value={5}>5</option>
+		</FormControl>
+	</InputGroup>
+);
 
-export default SetRating
+export default SetRating;

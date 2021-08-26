@@ -7,37 +7,33 @@ import romancebooks from "./Data/romance.json";
 import FilterBook from "./FilterBookList";
 
 import { Component } from "react";
-import "./SingleBook.css"
-import SingleBook from './SingleBook'
+import "./SingleBook.css";
+import SingleBook from "./SingleBook";
 
 class BookList extends Component {
 	state = {
 		SelectedCategory: fantasybooks,
-		//state of query is now an empty string 
-		query : ""
-
-	}
+		//state of query is now an empty string
+		query: "",
+	};
 
 	onChange = (query) => {
-		//updating the query's state  based on user's input 
-		this.setState({query})
+		//updating the query's state  based on user's input
+		this.setState({ query });
 
 		//map and return the results we want as an array
 		if (query) {
-			const filteredBooks = this.state.SelectedCategory.filter((book)=>{
+			const filteredBooks = this.state.SelectedCategory.filter((book) => {
 				//check if our book list contains user input [book title]
-				//make sure to check both in lower case 
-				return book.title.toLowerCase().includes(query.toLowerCase())
-			})
+				//make sure to check both in lower case
+				return book.title.toLowerCase().includes(query.toLowerCase());
+			});
 			//updating our state in SelectedCategory based on our filtered results
-			this.setState({SelectedCategory: filteredBooks})
+			this.setState({ SelectedCategory: filteredBooks });
 		} else {
-			this.setState({SelectedCategory: fantasybooks})
+			this.setState({ SelectedCategory: fantasybooks });
 		}
-
-
-	}
-
+	};
 
 	// mandatory method for every class
 	render() {
@@ -105,18 +101,7 @@ class BookList extends Component {
 						this.state.SelectedCategory.map((book) => (
 							//a unique key is needed
 							<Col xs={12} sm={6} md={4} className="mb-2" key={book.asin}>
-								<Card id={book.asin} className="wholeCard">
-									<Card.Img
-										variant="top"
-										src={book.img}
-										style={{ height: "16rem" }}
-										className="img-fluid"
-										alt="bookimage"
-									/>
-									<Card.Body>
-										<Card.Title id="bookTitle">{book.title}</Card.Title>
-									</Card.Body>
-								</Card>
+								<SingleBook book={book} />
 							</Col>
 						))
 					}
@@ -126,9 +111,4 @@ class BookList extends Component {
 	}
 }
 
-export default BookList
-
-
-
-
-		
+export default BookList;
