@@ -8,6 +8,7 @@ const FilterBook = ({ onChange }) => (
 				onChange={(e) => onChange(e.target.value)}
 				type="text"
 				placeholder="Search for books"
+				
 			/>
 		</Form.Group>
 	</Form>

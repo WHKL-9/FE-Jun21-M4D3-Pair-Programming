@@ -13,20 +13,23 @@ import SingleBook from './SingleBook'
 class BookList extends Component {
 	state = {
 		SelectedCategory: fantasybooks,
+		//state of query is now an empty string 
 		query : ""
 
 	}
 
 	onChange = (query) => {
-		//updating the query based on user's input
+		//updating the query's state  based on user's input 
 		this.setState({query})
 
+		//map and return the results we want as an array
 		if (query) {
 			const filteredBooks = this.state.SelectedCategory.filter((book)=>{
 				//check if our book list contains user input [book title]
 				//make sure to check both in lower case 
 				return book.title.toLowerCase().includes(query.toLowerCase())
 			})
+			//updating our state in SelectedCategory based on our filtered results
 			this.setState({SelectedCategory: filteredBooks})
 		} else {
 			this.setState({SelectedCategory: fantasybooks})
