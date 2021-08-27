@@ -7,9 +7,11 @@ import {
 	ListGroup,
 } from "react-bootstrap";
 import "./SingleBook.css";
+import CommentArea from "./CommentArea";
 import { Component } from "react";
 import SetComment from "./SetComment";
 import SetRating from "./SetRating";
+import AddComment from "./AddComment"
 
 class SingleBook extends Component {
 	state = {
@@ -34,6 +36,8 @@ class SingleBook extends Component {
 			},
 		});
 	};
+	//fetch the comments in a function and call the function in componentdidmount later 
+	//so that we don't have to refresg the page to see the most updated comment
 	fetchComments = async () => {
 		try {
 			const response = await fetch(
@@ -83,6 +87,7 @@ class SingleBook extends Component {
 					comment: "",
 					rate: "",
 				});
+				//passing fetch comment function as a prop 
 				this.fetchComments();
 			} else {
 				alert("Your comment and rating was not added. Please try again");
@@ -91,6 +96,7 @@ class SingleBook extends Component {
 			console.log(error);
 		}
 	};
+
 	componentDidMount() {
 		if (this.state.selected) {
 			this.fetchComments();
@@ -126,6 +132,15 @@ class SingleBook extends Component {
 					//     {/* only show comment and rating on select */}
 					this.state.selected && (
 						<div>
+							{/* Stefano's method */}
+							{/* we need to pass a prop named 'asin' in the asin to comment area  */}
+							{/* taking the state in CommentArea.jsx and Addcomment.jsx*/}
+							<CommentArea asin={this.props.book.asin}/>
+							<AddComment asin={this.props.book.asin}/>
+
+							<hr/>
+							{/* my method with Ubeyt's code */}
+							{/* taking the state in SingleBook.jsx */}
 							<Form
 								onSubmit={this.handleSubmit}
 								className="CommentSection w-50 mx-auto"
@@ -143,10 +158,10 @@ class SingleBook extends Component {
 								<Button className="mr-2 mb-2" variant="primary" type="submit">
 									Add Comment
 								</Button>
-
+{/* 
 								<Button className="mb-2" variant="success" type="button">
 									Check out comments
-								</Button>
+								</Button> */}
 							</Form>
 							<ListGroup>
 								{this.state.comments.map((comment) => (
